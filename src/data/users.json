@@ -1,0 +1,30 @@
+{
+  "users": {
+    "297774423715348480": {
+      "points": 810,
+      "completedChallenges": [
+        {
+          "challengeId": "web_002",
+          "completedAt": 1776210208188,
+          "type": "individual"
+        },
+        {
+          "challengeId": "web_021",
+          "completedAt": 1776210552607,
+          "type": "individual"
+        }
+      ],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 2,
+        "byDifficulty": {
+          "easy": 1,
+          "medium": 1,
+          "hard": 0
+        }
+      }
+    }
+  }
+}

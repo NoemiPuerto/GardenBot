@@ -1,0 +1,27 @@
+{
+  "challenges": [
+    {
+      "id": "mentor_001",
+      "title": "E-commerce App",
+      "description": "Construye una aplicación de e-commerce con carrito, productos y checkout simulado.",
+      "difficulty": "hard",
+      "category": "web",
+      "points": 180,
+      "image": "https://i.pinimg.com/736x/e8/7e/af/e87eaf42e52f9466632f00d05ea80a91.jpg",
+      "tags": [
+        "react",
+        "state",
+        "api"
+      ],
+      "requirements": [
+        "Debe tener carrito funcional",
+        "Debe mostrar productos desde API",
+        "Debe ser responsive"
+      ],
+      "isActive": true,
+      "assignedTeams": [
+        "1493832591655309313"
+      ]
+    }
+  ]
+}

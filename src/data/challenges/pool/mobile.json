@@ -1,0 +1,167 @@
+{
+    "category": "mobile",
+    "challenges": [
+  
+   
+      {
+        "id": "mobile_001",
+        "title": "Contador Interactivo",
+        "description": "Crea una app con un botón que incremente y disminuya un contador.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 30,
+        "image": "",
+        "tags": ["state", "ui"]
+      },
+      {
+        "id": "mobile_002",
+        "title": "Lista de Tareas",
+        "description": "Crea una app para agregar, eliminar y marcar tareas como completadas.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 40,
+        "tags": ["crud", "state"]
+      },
+      {
+        "id": "mobile_003",
+        "title": "Perfil de Usuario",
+        "description": "Pantalla con avatar, nombre, bio y botones de acción.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 35,
+        "tags": ["ui"]
+      },
+      {
+        "id": "mobile_004",
+        "title": "Calculadora Simple",
+        "description": "App con operaciones básicas (+, -, *, /).",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 40,
+        "tags": ["logic", "ui"]
+      },
+      {
+        "id": "mobile_005",
+        "title": "Lista de Contactos",
+        "description": "Muestra una lista de contactos con nombre y avatar.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 35,
+        "tags": ["list"]
+      },
+  
+     
+  
+      {
+        "id": "mobile_020",
+        "title": "App del Clima",
+        "description": "Consulta una API y muestra clima actual por ciudad.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 70,
+        "tags": ["api", "async"]
+      },
+      {
+        "id": "mobile_021",
+        "title": "Login + Registro",
+        "description": "Crea pantallas de login y registro con validaciones.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 70,
+        "tags": ["auth", "forms"]
+      },
+      {
+        "id": "mobile_022",
+        "title": "App de Notas",
+        "description": "CRUD completo de notas con almacenamiento local.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 80,
+        "tags": ["storage", "crud"]
+      },
+      {
+        "id": "mobile_023",
+        "title": "Feed tipo Instagram",
+        "description": "Lista de posts con imagen, likes y comentarios básicos.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 90,
+        "tags": ["ui", "list"]
+      },
+      {
+        "id": "mobile_024",
+        "title": "Navegación entre pantallas",
+        "description": "Implementa navegación con múltiples vistas.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 60,
+        "tags": ["navigation"]
+      },
+      {
+        "id": "mobile_025",
+        "title": "App de Gastos",
+        "description": "Registra ingresos y gastos con resumen total.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 80,
+        "tags": ["logic", "charts"]
+      },
+  
+     
+      {
+        "id": "mobile_040",
+        "title": "Chat en Tiempo Real",
+        "description": "Implementa chat usando WebSockets o Firebase.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 150,
+        "tags": ["realtime", "backend"]
+      },
+      {
+        "id": "mobile_041",
+        "title": "App tipo Uber",
+        "description": "Mapa, ubicación y simulación de rutas.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 180,
+        "tags": ["maps", "gps"]
+      },
+      {
+        "id": "mobile_042",
+        "title": "App de E-commerce",
+        "description": "Productos, carrito, checkout simulado.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 160,
+        "tags": ["cart", "state"]
+      },
+      {
+        "id": "mobile_043",
+        "title": "Clon de WhatsApp UI",
+        "description": "UI completa con chats, estados y llamadas (mock).",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 170,
+        "tags": ["ui", "complex"]
+      },
+      {
+        "id": "mobile_044",
+        "title": "App con Autenticación Real",
+        "description": "Login con backend real (JWT o Firebase).",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 150,
+        "tags": ["auth", "backend"]
+      },
+      {
+        "id": "mobile_045",
+        "title": "Sistema Offline First",
+        "description": "App que funciona sin internet y sincroniza datos.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 200,
+        "tags": ["offline", "sync"]
+      }
+  
+    ]
+  }

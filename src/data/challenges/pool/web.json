@@ -1,0 +1,187 @@
+{
+    "category": "web",
+    "challenges": [
+  
+     
+  
+      {
+        "id": "web_001",
+        "title": "Landing Page Simple",
+        "description": "Crea una landing page con header, hero y footer.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 30,
+        "image": "",
+        "tags": ["html", "css"]
+      },
+      {
+        "id": "web_002",
+        "title": "Tarjeta de Producto",
+        "description": "Diseña una tarjeta de producto con imagen, precio y botón.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 30,
+        "tags": ["ui"]
+      },
+      {
+        "id": "web_003",
+        "title": "Navbar Responsive",
+        "description": "Crea una barra de navegación adaptable a móvil.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 35,
+        "tags": ["responsive"]
+      },
+      {
+        "id": "web_004",
+        "title": "Formulario de Contacto",
+        "description": "Formulario con validación básica.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 35,
+        "tags": ["forms"]
+      },
+      {
+        "id": "web_005",
+        "title": "Galería de Imágenes",
+        "description": "Grid de imágenes con hover effects.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 30,
+        "tags": ["grid"]
+      },
+  
+  
+  
+      {
+        "id": "web_020",
+        "title": "Dashboard Admin",
+        "description": "Panel con sidebar, métricas y tarjetas.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 80,
+        "tags": ["ui", "layout"]
+      },
+      {
+        "id": "web_021",
+        "title": "Clon de Login UI",
+        "description": "Pantalla de login con validación y diseño moderno.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 60,
+        "tags": ["forms", "ui"]
+      },
+      {
+        "id": "web_022",
+        "title": "App de Tareas (Web)",
+        "description": "CRUD completo con almacenamiento local.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 80,
+        "tags": ["crud", "localstorage"]
+      },
+      {
+        "id": "web_023",
+        "title": "Consumo de API",
+        "description": "Muestra datos desde una API pública.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 70,
+        "tags": ["api"]
+      },
+      {
+        "id": "web_024",
+        "title": "Carrito de Compras",
+        "description": "Añadir, eliminar y calcular total.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 90,
+        "tags": ["state", "logic"]
+      },
+      {
+        "id": "web_025",
+        "title": "Buscador en Tiempo Real",
+        "description": "Filtra resultados mientras escribes.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 70,
+        "tags": ["search"]
+      },
+      {
+        "id": "web_026",
+        "title": "Dark Mode Toggle",
+        "description": "Implementa modo oscuro persistente.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 60,
+        "tags": ["ui", "state"]
+      },
+  
+      
+  
+      {
+        "id": "web_040",
+        "title": "Clon de Twitter",
+        "description": "Feed, posts, likes y comentarios (mock).",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 150,
+        "tags": ["social", "ui"]
+      },
+      {
+        "id": "web_041",
+        "title": "E-commerce Completo",
+        "description": "Catálogo, carrito y checkout simulado.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 180,
+        "tags": ["ecommerce"]
+      },
+      {
+        "id": "web_042",
+        "title": "App tipo Notion",
+        "description": "Editor con bloques dinámicos.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 200,
+        "tags": ["editor"]
+      },
+      {
+        "id": "web_043",
+        "title": "Sistema de Autenticación",
+        "description": "Login con backend (JWT o Firebase).",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 150,
+        "tags": ["auth"]
+      },
+      {
+        "id": "web_044",
+        "title": "Chat en Tiempo Real",
+        "description": "Chat usando WebSockets o Firebase.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 160,
+        "tags": ["realtime"]
+      },
+      {
+        "id": "web_045",
+        "title": "Clon de Netflix UI",
+        "description": "Pantalla con carruseles y previews.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 140,
+        "tags": ["ui", "complex"]
+      },
+      {
+        "id": "web_046",
+        "title": "Kanban Board (Trello)",
+        "description": "Drag & drop de tareas entre columnas.",
+        "type": "individual",
+        "difficulty": "hard",
+        "points": 180,
+        "tags": ["dragdrop", "state"]
+      }
+  
+    ]
+  }

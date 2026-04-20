@@ -1,0 +1,203 @@
+{
+    "category": "logic",
+    "challenges": [
+  
+  
+      {
+        "id": "logic_001",
+        "title": "FizzBuzz",
+        "description": "Imprime números del 1 al 100, reemplazando múltiplos de 3 por Fizz y de 5 por Buzz.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 20,
+        "image": "https://i.pinimg.com/736x/14/20/fd/1420fdb2c1b84a55bc9a61e3050b0fa5.jpg",
+        "tags": ["loops"]
+      },
+      {
+        "id": "logic_002",
+        "title": "Número Palíndromo",
+        "description": "Determina si un número se lee igual al revés.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 20,
+        "image": "https://i.pinimg.com/1200x/ac/b4/53/acb453916f2ec33462cde593826d09c3.jpg",
+        "tags": ["strings"]
+      },
+      {
+        "id": "logic_003",
+        "title": "Invertir String",
+        "description": "Invierte una cadena de texto.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 20,
+        "image": "https://i.pinimg.com/736x/ff/69/8c/ff698c69f2a4f4096da2d2ef6aaf42bb.jpg",
+        "tags": ["strings"]
+      },
+      {
+        "id": "logic_004",
+        "title": "Contar Vocales",
+        "description": "Cuenta cuántas vocales tiene una cadena.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 20,
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "tags": ["strings"]
+      },
+      {
+        "id": "logic_005",
+        "title": "Máximo de un Array",
+        "description": "Encuentra el número más grande en un array.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 20,
+        "tags": ["arrays"]
+      },
+      {
+        "id": "logic_006",
+        "title": "Eliminar Duplicados",
+        "description": "Elimina elementos duplicados de un array.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 25,
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "tags": ["arrays"]
+      },
+      {
+        "id": "logic_007",
+        "title": "Suma de Array",
+        "description": "Suma todos los números de un array.",
+        "type": "individual",
+        "difficulty": "easy",
+        "points": 20,
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg"
+        
+      },
+  
+      
+  
+      {
+        "id": "logic_020",
+        "title": "Two Sum",
+        "description": "Encuentra dos números que sumen un valor objetivo.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 50,
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "tags": ["arrays", "hashmap"]
+      },
+      {
+        "id": "logic_021",
+        "title": "Anagramas",
+        "description": "Verifica si dos strings son anagramas.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 50,
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "tags": ["strings"]
+      },
+      {
+        "id": "logic_022",
+        "title": "Frecuencia de elementos",
+        "description": "Cuenta cuántas veces aparece cada elemento en un array.",
+        "type": "individual",
+        "difficulty": "medium",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 50
+      },
+      {
+        "id": "logic_023",
+        "title": "Ordenar sin sort()",
+        "description": "Ordena un array sin usar funciones nativas.",
+        "type": "individual",
+        "difficulty": "medium",
+        "points": 60,
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "tags": ["sorting"]
+      },
+      {
+        "id": "logic_024",
+        "title": "Subarray máximo",
+        "description": "Encuentra el subarray con la suma más alta.",
+        "type": "individual",
+        "difficulty": "medium",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 70
+      },
+      {
+        "id": "logic_025",
+        "title": "Rotar Array",
+        "description": "Rota un array k posiciones.",
+        "type": "individual",
+        "difficulty": "medium",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 50
+      },
+      {
+        "id": "logic_026",
+        "title": "Balance de paréntesis",
+        "description": "Verifica si los paréntesis están balanceados.",
+        "type": "individual",
+        "difficulty": "medium",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 60
+      },
+  
+    
+  
+      {
+        "id": "logic_040",
+        "title": "LRU Cache",
+        "description": "Implementa una cache con política Least Recently Used.",
+        "type": "individual",
+        "difficulty": "hard",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 120
+      },
+      {
+        "id": "logic_041",
+        "title": "Merge Intervals",
+        "description": "Fusiona intervalos que se superponen.",
+        "type": "individual",
+        "difficulty": "hard",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 120
+      },
+      {
+        "id": "logic_042",
+        "title": "Word Search",
+        "description": "Encuentra una palabra en una matriz de letras.",
+        "type": "individual",
+        "difficulty": "hard",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 130
+      },
+      {
+        "id": "logic_043",
+        "title": "Clonar grafo",
+        "description": "Clona un grafo con nodos conectados.",
+        "type": "individual",
+        "difficulty": "hard",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 140
+      },
+      {
+        "id": "logic_044",
+        "title": "Número de islas",
+        "description": "Cuenta cuántas islas hay en una matriz.",
+        "type": "individual",
+        "difficulty": "hard",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 130
+      },
+      {
+        "id": "logic_045",
+        "title": "Camino más corto",
+        "description": "Encuentra el camino más corto en un grafo.",
+        "type": "individual",
+        "difficulty": "hard",
+        "image": "https://i.pinimg.com/736x/08/53/50/08535013e3dc26e02766f8e7d543cb67.jpg",
+        "points": 150
+      }
+  
+    ]
+  }

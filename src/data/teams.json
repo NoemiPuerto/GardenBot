@@ -1,0 +1,112 @@
+[
+  {
+    "id": "1491965222251139172",
+    "name": "Los Padawans ⚔️",
+    "members": [
+      "297774423715348480"
+    ],
+    "leader": "297774423715348480",
+    "canalId": "1491965223530135714",
+    "activo": false,
+    "createdAt": 1775782629462,
+    "expiresAt": 1778374629462,
+    "notified24h": false,
+    "activeChallenge": null,
+    "challengeHistory": [
+      {
+        "challengeId": "mentor_001",
+        "completedAt": 1775782651791,
+        "repo": "esto se supone que un link.com"
+      }
+    ],
+    "closedAt": 1775782651792
+  },
+  {
+    "id": "1493749212221800593",
+    "name": "Stack Masters 📚",
+    "members": [
+      "297774423715348480"
+    ],
+    "leader": "297774423715348480",
+    "canalId": "1493749213593468980",
+    "activo": false,
+    "createdAt": 1776207966660,
+    "expiresAt": 1778799966660,
+    "notified24h": false,
+    "activeChallenge": null,
+    "challengeHistory": [
+      {
+        "challengeId": "mentor_001",
+        "completedAt": 1776208013226,
+        "repo": "si"
+      }
+    ],
+    "closedAt": 1776208013227
+  },
+  {
+    "id": "1493758671379759138",
+    "name": "404 Not Found 🚫",
+    "members": [
+      "297774423715348480"
+    ],
+    "leader": "297774423715348480",
+    "canalId": "1493758672646701146",
+    "activo": false,
+    "createdAt": 1776210221894,
+    "expiresAt": 1778802221894,
+    "notified24h": false,
+    "activeChallenge": null,
+    "challengeHistory": [
+      {
+        "challengeId": "mentor_001",
+        "completedAt": 1776210577624,
+        "repo": "si.com"
+      }
+    ],
+    "closedAt": 1776210577625
+  },
+  {
+    "id": "1493762307690598521",
+    "name": "Los Padawans ⚔️",
+    "members": [
+      "297774423715348480"
+    ],
+    "leader": "297774423715348480",
+    "canalId": "1493762308642570332",
+    "activo": false,
+    "createdAt": 1776211088632,
+    "expiresAt": 1778803088632,
+    "notified24h": false,
+    "activeChallenge": null,
+    "challengeHistory": [
+      {
+        "challengeId": "mentor_001",
+        "completedAt": 1776211124616,
+        "repo": "hola.com"
+      }
+    ],
+    "closedAt": 1776211124617
+  },
+  {
+    "id": "1493763815039438950",
+    "name": "Bug Smashers 🐛",
+    "members": [
+      "297774423715348480"
+    ],
+    "leader": "297774423715348480",
+    "canalId": "1493763817878851714",
+    "activo": false,
+    "createdAt": 1776211448629,
+    "expiresAt": 1778803448629,
+    "notified24h": false,
+    "activeChallenge": null,
+    "challengeHistory": [
+      {
+        "challengeId": "mentor_001",
+        "completedAt": 1776211476809,
+        "repo": "hhola.com"
+      }
+    ],
+    "closedAt": 1776211476810
+  }
+]
