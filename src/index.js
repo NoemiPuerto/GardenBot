@@ -9,6 +9,21 @@ const { Client, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
 
+// 🌐 SERVIDOR WEB (KEEP ALIVE PARA RENDER)
+const express = require("express");
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Bot activo 🚀");
+});
+
+app.listen(PORT, () => {
+  console.log(`🌐 Servidor web activo en puerto ${PORT}`);
+});
+
+// 🤖 CLIENTE DISCORD
 const client = new Client({
   intents: [GatewayIntentBits.Guilds]
 });
@@ -30,11 +45,10 @@ for (const file of commandFiles) {
   console.log(`📦 Comando cargado: ${command.data.name}`);
 }
 
-//  READY 
+// READY
 client.once("ready", async () => {
   console.log(`✅ Bot listo como ${client.user.tag}`);
 
-  // Inicializaciones seguras
   try {
     await fetchGifs();
     console.log("🎞️ GIFs cargados correctamente");
@@ -84,5 +98,5 @@ client.on("interactionCreate", async interaction => {
   }
 });
 
-// Login
+// LOGIN
 client.login(process.env.TOKEN);
