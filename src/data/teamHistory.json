@@ -1,26 +1,3 @@
 [
-  {
-    "id": "equipo1",
-    "members": [
-      "123",
-      "456",
-      "789"
-    ],
-    "pointsGanados": 50,
-    "retoId": 2,
-    "fecha": "2026-04-07T12:00:00Z",
-    "repositorio": "https://github.com/..."
-  },
-  {
-    "id": "team1",
-    "name": "Equipo 1",
-    "members": [
-      "297774423715348480",
-      "123456789012345678"
-    ],
-    "retoId": 1,
-    "repo": "https://github.com/tu-proyecto",
-    "pointsGanados": 50,
-    "fecha": "2026-04-07T21:53:02.956Z"
-  }
+  
 ]

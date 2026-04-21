@@ -9,7 +9,7 @@ const { Client, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
 
-// 🌐 SERVIDOR WEB (KEEP ALIVE PARA RENDER)
+// SERVIDOR WEB (para Render / uptime)
 const express = require("express");
 const app = express();
 
@@ -23,14 +23,18 @@ app.listen(PORT, () => {
   console.log(`🌐 Servidor web activo en puerto ${PORT}`);
 });
 
-// 🤖 CLIENTE DISCORD
+// CLIENTE DISCORD 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds]
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers, 
+    GatewayIntentBits.GuildMessages 
+  ]
 });
 
 console.log("🔐 TOKEN cargado:", process.env.TOKEN ? "OK" : "FALTANTE");
 
-// Cargar comandos
+//  CARGAR COMANDOS
 client.commands = new Map();
 
 const commandsPath = path.join(__dirname, "commands");
@@ -45,7 +49,7 @@ for (const file of commandFiles) {
   console.log(`📦 Comando cargado: ${command.data.name}`);
 }
 
-// READY
+//  READY
 client.once("ready", async () => {
   console.log(`✅ Bot listo como ${client.user.tag}`);
 
@@ -53,19 +57,19 @@ client.once("ready", async () => {
     await fetchGifs();
     console.log("🎞️ GIFs cargados correctamente");
   } catch (err) {
-    console.error("Error cargando GIFs:", err);
+    console.error("❌ Error cargando GIFs:", err);
   }
 
-  // INICIAR SCHEDULER
+  //  iniciar scheduler
   startScheduler(client);
 
   console.log("📡 Servidores conectados:");
   client.guilds.cache.forEach(guild => {
-    console.log(`- ${guild.name}`);
+    console.log(`- ${guild.name} (${guild.id})`);
   });
 });
 
-// Manejo de comandos
+//  MANEJO DE COMANDOS
 client.on("interactionCreate", async interaction => {
   if (!interaction.isChatInputCommand()) return;
 
@@ -87,16 +91,16 @@ client.on("interactionCreate", async interaction => {
     if (interaction.replied || interaction.deferred) {
       await interaction.followUp({
         content: "❌ Hubo un error ejecutando el comando",
-        ephemeral: true
+        flags: 64
       });
     } else {
       await interaction.reply({
         content: "❌ Hubo un error ejecutando el comando",
-        ephemeral: true
+        flags: 64
       });
     }
   }
 });
 
-// LOGIN
+//  LOGIN
 client.login(process.env.TOKEN);

@@ -1,49 +1,5 @@
 {
   "submissions": [
-    {
-      "id": "sub_1775783391251",
-      "userId": "297774423715348480",
-      "challengeId": "logic_004",
-      "repoUrl": "retoindividua.com",
-      "type": "individual",
-      "status": "pending",
-      "createdAt": 1775783391251
-    },
-    {
-      "id": "sub_1776209300076",
-      "userId": "297774423715348480",
-      "challengeId": "logic_021",
-      "repoUrl": "1",
-      "type": "individual",
-      "status": "pending",
-      "createdAt": 1776209300076
-    },
-    {
-      "id": "sub_1776209347311",
-      "userId": "297774423715348480",
-      "challengeId": "web_003",
-      "repoUrl": "si.com",
-      "type": "individual",
-      "status": "pending",
-      "createdAt": 1776209347311
-    },
-    {
-      "id": "sub_1776210208188",
-      "userId": "297774423715348480",
-      "challengeId": "web_002",
-      "repoUrl": "si.com",
-      "type": "individual",
-      "status": "pending",
-      "createdAt": 1776210208188
-    },
-    {
-      "id": "sub_1776210552606",
-      "userId": "297774423715348480",
-      "challengeId": "web_021",
-      "repoUrl": "hola.com",
-      "type": "individual",
-      "status": "pending",
-      "createdAt": 1776210552606
-    }
+  
   ]
 }

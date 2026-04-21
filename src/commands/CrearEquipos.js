@@ -16,44 +16,70 @@ module.exports = {
     try {
       await interaction.deferReply();
 
-      //  bloqueo por tiempo
       if (!canCreateTeams()) {
         return interaction.editReply("⚠️ Ya se crearon equipos recientemente. Espera 30 días.");
       }
 
-      //  limpiar roles anteriores (usuarios)
-      for (const member of guild.members.cache.values()) {
-        for (const role of member.roles.cache.values()) {
-          if (role.name.startsWith("TEAM_")) {
-            await member.roles.remove(role).catch(() => {});
-          }
-        }
-      }
-
-      //  eliminar roles del servidor
-      for (const role of guild.roles.cache.values()) {
-        if (role.name.startsWith("TEAM_")) {
-          await role.delete().catch(() => {});
-        }
-      }
-
-      //  rol participante
+      // 🔍 rol participante
       const role = guild.roles.cache.find(r => r.name === PARTICIPANT_ROLE);
 
       if (!role) {
         return interaction.editReply("❌ No existe el rol Participante");
       }
 
-      const members = role.members.map(m => m.id);
+      console.log("⏳ Cargando miembros del servidor...");
+
+      // FETCH UNA SOLA VEZ (CLAVE)
+      const fetchedMembers = await guild.members.fetch({ withPresences: false });
+
+      console.log("✅ Miembros cargados:", fetchedMembers.size);
+
+      // FILTRAR PARTICIPANTES
+      const members = [];
+
+      for (const member of fetchedMembers.values()) {
+        if (member.roles.cache.has(role.id)) {
+          members.push(member.id);
+        }
+      }
+
+      console.log("👥 PARTICIPANTES DETECTADOS:", members);
 
       if (members.length === 0) {
         return interaction.editReply("❌ No hay participantes");
       }
 
-      //  construir equipos
+      // =========================
+      // LIMPIAR SOLO PARTICIPANTES
+      // =========================
+      console.log("🧹 Limpiando roles anteriores...");
+
+      for (const userId of members) {
+        const member = fetchedMembers.get(userId);
+
+        if (!member) continue;
+
+        for (const r of member.roles.cache.values()) {
+          if (r.name.startsWith("TEAM_")) {
+            await member.roles.remove(r).catch(() => {});
+          }
+        }
+      }
+
+      // eliminar roles del servidor
+      for (const r of guild.roles.cache.values()) {
+        if (r.name.startsWith("TEAM_")) {
+          await r.delete().catch(() => {});
+        }
+      }
+
+      console.log("🎯 Creando equipos...");
+
+      // =========================
+      // CREAR EQUIPOS
+      // =========================
       const equipos = buildTeams(members, TEAM_SIZE);
 
-      //  rol líder
       let leaderRole = guild.roles.cache.find(r => r.name === LEADER_ROLE);
       if (!leaderRole) {
         leaderRole = await guild.roles.create({ name: LEADER_ROLE });
@@ -67,25 +93,17 @@ module.exports = {
         const rawName = getRandomTeamName();
         const teamName = `TEAM_${rawName}`;
 
-        //  rol
         const teamRole = await guild.roles.create({
           name: teamName,
           reason: "Nuevo equipo creado"
         });
 
-        //  canal
         const channel = await guild.channels.create({
           name: rawName.toLowerCase().replace(/\s+/g, "-"),
           type: 0,
           permissionOverwrites: [
-            {
-              id: guild.id,
-              deny: ["ViewChannel"]
-            },
-            {
-              id: teamRole.id,
-              allow: ["ViewChannel", "SendMessages"]
-            },
+            { id: guild.id, deny: ["ViewChannel"] },
+            { id: teamRole.id, allow: ["ViewChannel", "SendMessages"] },
             {
               id: interaction.client.user.id,
               allow: ["ViewChannel", "SendMessages", "ManageChannels"]
@@ -93,16 +111,14 @@ module.exports = {
           ]
         });
 
-        await channel.send(
-          "⚠️ Este canal será eliminado en 30 días.\nGuarden información importante."
-        );
+        await channel.send("⚠️ Este canal será eliminado en 30 días.");
 
-        // líder
         const leaderId = getRandomItem(teamMembers);
 
-        // 👥 asignar roles
         for (const userId of teamMembers) {
-          const member = await guild.members.fetch(userId);
+          const member = fetchedMembers.get(userId);
+
+          if (!member) continue;
 
           await member.roles.add(teamRole).catch(() => {});
           if (userId === leaderId) {
@@ -110,20 +126,21 @@ module.exports = {
           }
         }
 
-        // guardar 
         teamsForDB.push({
           roleId: teamRole.id,
           name: rawName,
           members: teamMembers,
           leader: leaderId,
-          channelId: channel.id 
+          channelId: channel.id
         });
       }
 
       const savedTeams = createTeams(teamsForDB);
-
       updateLastCreated();
 
+      // =========================
+      //  RESPUESTA
+      // =========================
       const embed = new EmbedBuilder()
         .setColor("#5865F2")
         .setTitle("🚀 Equipos creados")
