@@ -1,18 +1,28 @@
 [
   {
-    "id": "1496029552151891980",
-    "name": "Deploy Masters 🚀",
+    "id": "1496621708633702523",
+    "name": "Los Compiladores 🔧",
     "members": [
-      "297774423715348480",
-      "748982246240682084"
+      "758450629193629787",
+      "270280499493208095",
+      "662045803015307274",
+      "748982246240682084",
+      "297774423715348480"
     ],
-    "leader": "748982246240682084",
-    "canalId": "1496029554102501406",
-    "activo": true,
-    "createdAt": 1776751641406,
-    "expiresAt": 1779343641406,
+    "leader": "297774423715348480",
+    "canalId": "1496621710298976368",
+    "activo": false,
+    "createdAt": 1776892831907,
+    "expiresAt": 1779484831907,
     "notified24h": false,
     "activeChallenge": null,
-    "challengeHistory": []
+    "challengeHistory": [
+      {
+        "challengeId": "mentor_001",
+        "completedAt": 1776893113414,
+        "repo": "hola.com"
+      }
+    ],
+    "closedAt": 1776893113415
   }
 ]

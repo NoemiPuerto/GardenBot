@@ -1,3 +1,124 @@
 {
-  
+  "users": {
+    "297774423715348480": {
+      "points": 360,
+      "completedChallenges": [],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 0,
+        "byDifficulty": {
+          "easy": 0,
+          "medium": 0,
+          "hard": 0
+        }
+      }
+    },
+    "748982246240682084": {
+      "points": 360,
+      "completedChallenges": [],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 0,
+        "byDifficulty": {
+          "easy": 0,
+          "medium": 0,
+          "hard": 0
+        }
+      }
+    },
+    "614588061858136064": {
+      "points": 180,
+      "completedChallenges": [],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 0,
+        "byDifficulty": {
+          "easy": 0,
+          "medium": 0,
+          "hard": 0
+        }
+      }
+    },
+    "385856597336784896": {
+      "points": 180,
+      "completedChallenges": [],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 0,
+        "byDifficulty": {
+          "easy": 0,
+          "medium": 0,
+          "hard": 0
+        }
+      }
+    },
+    "758450629193629787": {
+      "points": 180,
+      "completedChallenges": [],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 0,
+        "byDifficulty": {
+          "easy": 0,
+          "medium": 0,
+          "hard": 0
+        }
+      }
+    },
+    "270280499493208095": {
+      "points": 180,
+      "completedChallenges": [],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 0,
+        "byDifficulty": {
+          "easy": 0,
+          "medium": 0,
+          "hard": 0
+        }
+      }
+    },
+    "662045803015307274": {
+      "points": 180,
+      "completedChallenges": [],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 0,
+        "byDifficulty": {
+          "easy": 0,
+          "medium": 0,
+          "hard": 0
+        }
+      }
+    },
+    "698133237712551956": {
+      "points": 0,
+      "completedChallenges": [],
+      "activeChallenges": {
+        "individual": null
+      },
+      "stats": {
+        "totalCompleted": 0,
+        "byDifficulty": {
+          "easy": 0,
+          "medium": 0,
+          "hard": 0
+        }
+      }
+    }
+  }
 }

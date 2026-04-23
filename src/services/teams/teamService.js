@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
+const { shuffle } = require("../../utils/shuffle");
+const { LEADER_ROLE } = require("../../config/constants");
+
 const teamsPath = path.join(__dirname, "../../data/teams.json");
 
 /* ------------------ Helpers ------------------ */
@@ -11,8 +14,8 @@ function readJSONSafe(filePath) {
   try {
     const data = fs.readFileSync(filePath, "utf-8");
     return data ? JSON.parse(data) : [];
-  } catch (e) {
-    console.error("Error parseando JSON:", e.message);
+  } catch (error) {
+    console.error("Error parseando JSON:", error.message);
     return [];
   }
 }
@@ -44,8 +47,6 @@ function saveTeams(teams) {
 
 /* ------------------ Utils ------------------ */
 
-const { shuffle } = require("../../utils/shuffle");
-
 function crearEquipos(users, size = 5) {
   const mezclados = shuffle(users);
   const equipos = [];
@@ -59,9 +60,6 @@ function crearEquipos(users, size = 5) {
 
 /* ------------------ Core ------------------ */
 
-/**
- * SOLO construye equipos (no guarda)
- */
 function buildTeams(userIds, size = 5) {
   const grupos = crearEquipos(userIds, size);
 
@@ -71,9 +69,6 @@ function buildTeams(userIds, size = 5) {
   }));
 }
 
-/**
- * Persiste equipos ya creados desde Discord
- */
 function createTeams(teamsData) {
   const existing = getTeams();
   const now = Date.now();
@@ -102,28 +97,21 @@ function createTeams(teamsData) {
   return nuevosEquipos;
 }
 
-/**
- * Busca equipo activo de usuario
- */
 function findUserTeam(userId) {
   const teams = getTeams();
 
-  return teams.find(
-    team => team.activo && team.members.includes(userId)
-  ) || null;
+  return (
+    teams.find(
+      team => team.activo && team.members.includes(userId)
+    ) || null
+  );
 }
 
-/**
- * Obtener equipo por ID
- */
 function getTeamById(teamId) {
   const teams = getTeams();
   return teams.find(t => t.id === teamId) || null;
 }
 
-/**
- * Guardar un equipo individual 
- */
 function saveTeam(updatedTeam) {
   const teams = getTeams();
 
@@ -131,24 +119,17 @@ function saveTeam(updatedTeam) {
   if (index === -1) return null;
 
   teams[index] = updatedTeam;
-
   saveTeams(teams);
 
   return updatedTeam;
 }
 
-/**
- * Obtiene equipos activos
- */
 function getActiveTeams() {
   return getTeams()
     .filter(t => t.activo)
     .sort((a, b) => a.createdAt - b.createdAt);
 }
 
-/**
- * Cierre lógico
- */
 function closeTeam(teamId) {
   const teams = getTeams();
 
@@ -163,6 +144,8 @@ function closeTeam(teamId) {
   return team;
 }
 
+/* ------------------ Delete Team ------------------ */
+
 async function deleteTeam(client, teamId) {
   const teams = getTeams();
   const team = teams.find(t => t.id === teamId);
@@ -171,24 +154,51 @@ async function deleteTeam(client, teamId) {
 
   const guild = client.guilds.cache.first();
 
-  try {
-    const channel = await guild.channels.fetch(team.canalId).catch(() => null);
-    if (channel) await channel.delete();
+  if (!guild) {
+    console.error("No se encontró ningún servidor conectado");
+    return null;
+  }
 
-    const role = await guild.roles.fetch(team.id).catch(() => null);
-    if (role) await role.delete();
+  try {
+    console.log("Eliminando equipo:", team.name);
+
+    const teamRole = await guild.roles.fetch(team.id).catch(() => null);
+
+    const leaderRole = guild.roles.cache.find(
+      role => role.name === LEADER_ROLE
+    );
 
     for (const memberId of team.members) {
       const member = await guild.members.fetch(memberId).catch(() => null);
-      if (member && role) {
-        await member.roles.remove(role).catch(() => null);
+
+      if (!member) continue;
+
+      if (teamRole) {
+        await member.roles.remove(teamRole).catch(() => null);
+      }
+
+      if (leaderRole) {
+        await member.roles.remove(leaderRole).catch(() => null);
       }
     }
 
-    console.log(`Equipo eliminado: ${team.name}`);
+    const channel = await guild.channels
+      .fetch(team.canalId)
+      .catch(() => null);
 
-  } catch (err) {
-    console.error("Error eliminando equipo:", err);
+    if (channel) {
+      await channel.delete().catch(() => null);
+      console.log("Canal eliminado:", team.canalId);
+    }
+
+    if (teamRole) {
+      await teamRole.delete().catch(() => null);
+      console.log("Rol de equipo eliminado:", team.id);
+    }
+
+    console.log(`Equipo eliminado correctamente: ${team.name}`);
+  } catch (error) {
+    console.error("Error eliminando equipo:", error);
   }
 
   const updated = teams.filter(t => t.id !== teamId);
@@ -197,34 +207,29 @@ async function deleteTeam(client, teamId) {
   return team;
 }
 
-/**
- * Limpieza opcional
- */
+/* ------------------ Cleanup ------------------ */
+
 function removeInactiveTeams() {
   const active = getTeams().filter(t => t.activo);
   saveTeams(active);
   return active;
 }
 
-/* ------------------ EXPORTS ------------------ */
+/* ------------------ Exports ------------------ */
 
 module.exports = {
-  // base
   getTeams,
   saveTeams,
 
-  // utils
   buildTeams,
   crearEquipos,
 
-  // core
   createTeams,
   findUserTeam,
   getActiveTeams,
   getTeamById,
   saveTeam,
 
-  // lifecycle
   closeTeam,
   deleteTeam,
   removeInactiveTeams

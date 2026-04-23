@@ -20,7 +20,7 @@ module.exports = {
         return interaction.editReply("⚠️ Ya se crearon equipos recientemente. Espera 30 días.");
       }
 
-      // 🔍 rol participante
+      //  rol participante
       const role = guild.roles.cache.find(r => r.name === PARTICIPANT_ROLE);
 
       if (!role) {

@@ -12,7 +12,6 @@ const poolChallengeService = require("../services/challenges/poolChallengeServic
 const mentorChallengeService = require("../services/challenges/mentorChallengeService");
 const userService = require("../services/users/userService");
 const teamService = require("../services/teams/teamService");
-const { deleteTeam } = require("../services/teams/teamService"); 
 const { getRandomGif } = require("../utils/gifService");
 
 module.exports = {
@@ -40,76 +39,116 @@ module.exports = {
         user.activeChallenges.individual
       );
 
-      // =========================
-      // CORE FLOW
-      // =========================
+      const cleanupTeamResources = async (teamData) => {
+        const guild = interaction.guild;
+
+        if (!guild || !teamData) return;
+
+        const teamRole = await guild.roles
+          .fetch(teamData.id)
+          .catch(() => null);
+
+        const leaderRole = guild.roles.cache.find(
+          role => role.name === "Lider"
+        );
+
+        for (const memberId of teamData.members) {
+          const member = await guild.members
+            .fetch(memberId)
+            .catch(() => null);
+
+          if (!member) continue;
+
+          if (teamRole) {
+            await member.roles.remove(teamRole).catch(() => null);
+          }
+
+          if (leaderRole) {
+            await member.roles.remove(leaderRole).catch(() => null);
+          }
+        }
+
+        const channel = await guild.channels
+          .fetch(teamData.canalId)
+          .catch(() => null);
+
+        if (channel) {
+          await channel.delete().catch(() => null);
+        }
+
+        if (teamRole) {
+          await teamRole.delete().catch(() => null);
+        }
+      };
 
       const runFlow = async (tipo) => {
         let challenge = null;
         let embed;
 
-        // =========================
-        // TEAM FLOW
-        // =========================
-
         if (tipo === "team") {
-          if (!hasTeam) throw new Error("No tienes reto de equipo activo");
+          if (!hasTeam) {
+            throw new Error("No tienes reto de equipo activo");
+          }
 
           challenge = mentorChallengeService.getTeamActiveChallenge(team.id);
-          if (!challenge) throw new Error("Reto de equipo no encontrado");
+
+          if (!challenge) {
+            throw new Error("Reto de equipo no encontrado");
+          }
 
           const points = challenge.points;
 
-          // dar puntos a todos
           for (const memberId of team.members) {
             userService.addPoints(memberId, points);
           }
 
-          // guardar historial antes de eliminar
           team.challengeHistory.push({
             challengeId: challenge.id,
             completedAt: Date.now(),
             repo
           });
 
-          teamService.saveTeam(team); // guardamos progreso
+          team.activeChallenge = null;
 
-          await deleteTeam(interaction.client, team.id);
+          teamService.saveTeam(team);
+          teamService.closeTeam(team.id);
+
+          await cleanupTeamResources(team);
 
           embed = new EmbedBuilder()
             .setColor("#FEE75C")
-            .setTitle("🚀 Reto de equipo completado")
-            .setDescription(`El equipo **${team.name}** ha completado su reto`)
+            .setTitle("Reto de equipo completado")
+            .setDescription(
+              `El equipo **${team.name}** ha completado su reto`
+            )
             .addFields(
               {
-                name: "👥 Miembros",
+                name: "Miembros",
                 value: team.members.map(id => `<@${id}>`).join(", ")
               },
               {
-                name: "🏆 Puntos",
+                name: "Puntos",
                 value: `+${points} para cada miembro`
               },
               {
-                name: "🔗 Repo",
+                name: "Repositorio",
                 value: repo
               }
             );
-        }
-
-        // =========================
-        // INDIVIDUAL FLOW
-        // =========================
-
-        else {
+        } else {
           const active = user.activeChallenges?.individual;
 
-          if (!active) throw new Error("No tienes reto individual activo");
+          if (!active) {
+            throw new Error("No tienes reto individual activo");
+          }
 
           challenge = poolChallengeService
             .getAllChallenges()
             .find(c => c.id === active.challengeId);
 
-          if (!challenge) throw new Error("Reto no encontrado");
+          if (!challenge) {
+            throw new Error("Reto no encontrado");
+          }
 
           submissionService.submitChallenge(userId, repo);
 
@@ -117,39 +156,46 @@ module.exports = {
 
           embed = new EmbedBuilder()
             .setColor("#57F287")
-            .setTitle("🎉 Reto completado")
+            .setTitle("Reto completado")
             .setDescription(
-              `Buen trabajo <@${userId}> 🚀\n\n` +
-              `Completaste **${challenge.title}**`
+              `Buen trabajo <@${userId}>\n\nCompletaste **${challenge.title}**`
             )
             .addFields(
               {
-                name: "🏆 Puntos ganados",
+                name: "Puntos ganados",
                 value: `+${challenge.points}`,
                 inline: true
               },
               {
-                name: "📊 Total",
+                name: "Total",
                 value: `${updatedUser.points}`,
                 inline: true
               },
               {
-                name: "🔗 Repositorio",
+                name: "Repositorio",
                 value: repo
               }
             );
         }
 
         const gif = await getRandomGif();
-        if (gif) embed.setImage(gif);
+        if (gif) {
+          embed.setImage(gif);
+        }
+
         embed.setTimestamp();
 
-        await interaction.editReply({ embeds: [embed] });
+        if (interaction.deferred) {
+          await interaction.editReply({
+            embeds: [embed],
+            components: []
+          });
+        } else {
+          await interaction.followUp({
+            embeds: [embed]
+          });
+        }
       };
-
-      // =========================
-      // DECISIÓN
-      // =========================
 
       if (!hasTeam && !hasIndividual) {
         return interaction.reply({
@@ -158,17 +204,16 @@ module.exports = {
         });
       }
 
-      // 🔘 BOTONES
       if (hasTeam && hasIndividual) {
         const row = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
             .setCustomId("submit_individual")
-            .setLabel("🟢 Individual")
+            .setLabel("Individual")
             .setStyle(ButtonStyle.Success),
 
           new ButtonBuilder()
             .setCustomId("submit_team")
-            .setLabel("🔵 Equipo")
+            .setLabel("Equipo")
             .setStyle(ButtonStyle.Primary)
         );
 
@@ -190,14 +235,15 @@ module.exports = {
             ? "team"
             : "individual";
 
-        await buttonInteraction.deferUpdate();
+        await buttonInteraction.update({
+          content: "Procesando submission...",
+          components: []
+        });
 
-        await interaction.deferReply();
         await runFlow(tipo);
         return;
       }
 
-      // 🟢 DIRECTO
       await interaction.deferReply();
 
       if (hasTeam) {
@@ -207,12 +253,13 @@ module.exports = {
       }
 
     } catch (error) {
-      console.error("💥 ERROR:", error);
+      console.error("Error en submit:", error);
 
       try {
         if (interaction.deferred || interaction.replied) {
           await interaction.editReply({
-            content: `❌ ${error.message}`
+            content: `❌ ${error.message}`,
+            components: []
           });
         } else {
           await interaction.reply({

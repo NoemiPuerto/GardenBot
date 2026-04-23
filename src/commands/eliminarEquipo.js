@@ -1,6 +1,8 @@
 const { SlashCommandBuilder } = require("discord.js");
-const { getActiveTeams, deleteTeam } = require("../services/teams/teamService");
-
+const {
+  getActiveTeams,
+  deleteTeam
+} = require("../services/teams/teamService");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,31 +16,47 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    if (!interaction.member.permissions.has("Administrator")) {
-      return interaction.reply("❌ No tienes permisos");
-    }
-
-    const numero = interaction.options.getInteger("numero");
-    const teams = getActiveTeams();
-
-    if (teams.length === 0) {
-      return interaction.reply("❌ No hay equipos activos");
-    }
-
-    if (numero < 1 || numero > teams.length) {
-      return interaction.reply(`❌ Número inválido. Hay ${teams.length} equipos.`);
-    }
-
-    const team = teams[numero - 1];
-
     try {
+      await interaction.deferReply({ flags: 64 });
+
+      if (!interaction.member.permissions.has("Administrator")) {
+        return interaction.editReply("❌ No tienes permisos");
+      }
+
+      const numero = interaction.options.getInteger("numero");
+      const teams = getActiveTeams();
+
+      if (teams.length === 0) {
+        return interaction.editReply("❌ No hay equipos activos");
+      }
+
+      if (numero < 1 || numero > teams.length) {
+        return interaction.editReply(
+          `❌ Número inválido. Hay ${teams.length} equipos.`
+        );
+      }
+
+      const team = teams[numero - 1];
+
       await deleteTeam(interaction.client, team.id);
 
-      await interaction.reply(`🗑️ Equipo eliminado: **${team.name}**`);
+      await interaction.editReply(
+        `🗑️ Equipo eliminado: **${team.name}**`
+      );
 
     } catch (error) {
-      console.error(error);
-      await interaction.reply("❌ Error al eliminar equipo");
+      console.error("Error en eliminar-equipo:", error);
+
+      if (interaction.deferred || interaction.replied) {
+        await interaction.editReply(
+          "❌ Error al eliminar equipo"
+        );
+      } else {
+        await interaction.reply({
+          content: "❌ Error al eliminar equipo",
+          flags: 64
+        });
+      }
     }
   }
 };
